@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="actionInterceptor" extends="json-default">
+		<interceptors>
+			<!-- 注册登录检查拦截器 -->
+			<interceptor name="actionInter" class="actionInterceptor"></interceptor>
+			<!-- 注册登录检查拦截器栈，包含了默认的拦截器 -->
+			<interceptor-stack name="actionStack">
+				<interceptor-ref name="actionInter"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="actionStack"></default-interceptor-ref>
+		<!-- 定义全局的Result -->
+		<global-results>
+			<!-- 定义全局的错误页面 -->
+			<result name="error">/WEB-INF/main/error.jsp</result>
+		</global-results>
+	</package>
+	
+</struts>
